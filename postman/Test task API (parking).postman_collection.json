@@ -1,0 +1,1672 @@
+{
+	"info": {
+		"_postman_id": "73c21000-4880-437e-97a1-e6184ee7e6f3",
+		"name": "Test task API (parking)",
+		"description": "# Introduction\nThe API provides endpoints for a system for keeping records of  cars in a Parking lot.\n\n# Overview\nThere are two entities:\n- client\n\n    >Full name (string, min 3 , max 100 characters)\n\n    >Gender (enum: 'm' or 'f', required)\n\n    >Phone number (string, required, unique, max 20 characters)\n\n    >Address (string, max 255 characters)\n\n\n- car\n\n    >Brand (string, required, max 20 characters)\n\n    >Model (string, required, max 30 characters)\n\n    >Body color (string, required, max 30 characters)\n\n    >State Number of the RF (string, required, unique, max 30 characters)\n\n    >Owner(client) (integer, required)\n\n    >Car status flag indicating that the car is in or out of the Parking lot (boolean, required)\n\n\n# Authentication\nNo authentication\n\n# Current Version\nThe current version of the API is 1.\n\n# Pagination\nThe API will automatically paginate the responses.\nConstructing a request with pagination:\n \nYou specify which page you want to access with the ?page parameter (default first page). You can also specify the size of the page with the ?pageSize parameter (default 10).\n\n# Error Codes\n>A successful API requests will return HTTP 200 Status Code.\n\n>Requests for non existing entity will return HTTP 404 Status Code and response body with errors messages(JSON).\n\n>Requests that does not match the entity conditions will return HTTP 400 Status Code and response body with errors messages(JSON).\n\nThe rest of the Status Codes are written under the request.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Clients",
+			"item": [
+				{
+					"name": "List clients",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {}
+							}
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2",
+									"description": "optional, default = 1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "3",
+									"description": "optional, default = 10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List clients example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients?page=2&pageSize=3",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "2",
+											"description": "optional, default = 1"
+										},
+										{
+											"key": "pageSize",
+											"value": "3",
+											"description": "optional, default = 10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 14:26:05 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Content-Length",
+									"value": "773"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 4,\n        \"FIO\": \"Антипов Иван Иванович\",\n        \"gender\": \"m\",\n        \"phone\": \"+7123123123\",\n        \"address\": \"Volgograd\",\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 13:52:54\"\n    },\n    {\n        \"id\": 5,\n        \"FIO\": \"Скляр Петр Петрович\",\n        \"gender\": \"m\",\n        \"phone\": \"+7(423)423-423\",\n        \"address\": \"Volzhsky\",\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 13:52:54\"\n    },\n    {\n        \"id\": 6,\n        \"FIO\": \"Тучина Анна Ивановна\",\n        \"gender\": \"f\",\n        \"phone\": \"+1(823)423- 123\",\n        \"address\": \"Sr.Akhtuba\",\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 13:52:54\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get client",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get client example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/3",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 14:27:46 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "279"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 3,\n        \"FIO\": \"Сидорова Анна Сидоровна\",\n        \"gender\": \"f\",\n        \"phone\": \"+1(123)123- 123\",\n        \"address\": \"Sr.Akhtuba\",\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 13:52:54\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create client",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FIO\": \"A\",\n    \"gender\": \"m\",\n    \"phone\": \"+7(423)423-423\",\n    \"address\": \"Volgograd\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients"
+							]
+						},
+						"description": "A successful requests will return HTTP 201 'Created' Status Code."
+					},
+					"response": [
+						{
+							"name": "Create client example 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"FIO\": \"Иванов Иван Иванович\",\n    \"gender\": \"m\",\n    \"phone\": \"1231231\",\n    \"address\": \"Volgograd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 14:53:33 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Create client example 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"FIO\": \"A\",\n    \"gender\": \"m\",\n    \"phone\": \"+7(423)423-423\",\n    \"address\": \"Volgograd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 14:55:35 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "91"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"FIO\": [\n        \"Name must be at least 3 characters\"\n    ],\n    \"phone\": [\n        \"This phone number already exists\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Update client",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"FIO\": \"Тучина Анна Ивановна\",\n    \"gender\": \"f\",\n    \"phone\": \"+1(823)423- 123\",\n    \"address\": \"Sr.Akhtuba\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update client example 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"FIO\": \"Тучина Анна Ивановна\",\n    \"gender\": \"f\",\n    \"phone\": \"+1(823)423- 123\",\n    \"address\": \"Sr.Akhtuba\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/1000",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"1000"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:05:12 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Content-Length",
+									"value": "27"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": [\n        \"Client not found\"\n    ]\n}"
+						},
+						{
+							"name": "Update client example 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"FIO\": \"Тучина Анна Ивановна\",\n    \"gender\": \"f\",\n    \"phone\": \"+1(823)423- 123\",\n    \"address\": \"Sr.Akhtuba\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/6",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"6"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:04:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Delete client",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"{id}"
+							]
+						},
+						"description": "A successful requests will return HTTP 204 Status Code."
+					},
+					"response": [
+						{
+							"name": "Delete client example 1",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/7",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"7"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:09:54 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cars",
+			"item": [
+				{
+					"name": "List all cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "optional, default = 1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "3",
+									"description": "optional, default = 10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List all cars example",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars?page=1&pageSize=3",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "optional, default = 1"
+										},
+										{
+											"key": "pageSize",
+											"value": "3",
+											"description": "optional, default = 10"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:16:15 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Content-Length",
+									"value": "670"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 1,\n        \"brand\": \"VAZ\",\n        \"model\": \"2101\",\n        \"color\": \"красный\",\n        \"state_number\": \"о123оо34\",\n        \"client_id\": 1,\n        \"status\": 0,\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 13:52:54\"\n    },\n    {\n        \"id\": 2,\n        \"brand\": \"VAZ\",\n        \"model\": \"2102\",\n        \"color\": \"синий\",\n        \"state_number\": \"о577ор34\",\n        \"client_id\": 2,\n        \"status\": 0,\n        \"created_at\": \"2020-07-05 13:52:54\",\n        \"updated_at\": \"2020-07-05 14:55:15\"\n    },\n    {\n        \"id\": 3,\n        \"brand\": \"VAZ\",\n        \"model\": \"2103\",\n        \"color\": \"красный\",\n        \"state_number\": \"о767ор34\",\n        \"client_id\": 3,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 13:52:55\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Get car",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get car example 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars/500",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"500"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:20:36 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Content-Length",
+									"value": "24"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": [\n        \"Car not found\"\n    ]\n}"
+						},
+						{
+							"name": "Get car example 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars/5",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:20:00 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "224"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 5,\n        \"brand\": \"LADA\",\n        \"model\": \"Vesta\",\n        \"color\": \"черный\",\n        \"state_number\": \"о345оо34\",\n        \"client_id\": 5,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 13:52:55\"\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Create car",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о511ор34\",\n    \"client_id\": 100,\n    \"status\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars"
+							]
+						},
+						"description": "A successful requests will return HTTP 201 'Created' Status Code."
+					},
+					"response": [
+						{
+							"name": "Create car example 2",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о511ор34\",\n    \"client_id\": 100,\n    \"status\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:28:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"client_id\": [\n        \"Client not found\"\n    ]\n}"
+						},
+						{
+							"name": "Create car example 1",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о517ор34\",\n    \"client_id\": 2,\n    \"status\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:27:07 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "Update car",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о345оо34\",\n    \"client_id\": 1,\n    \"status\": 0\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{id}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update car example 1",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о511ор34\",\n    \"client_id\": 1,\n    \"status\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars/3",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"3"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "html",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:30:21 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "57"
+								},
+								{
+									"key": "Content-Length",
+									"value": "0"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "text/html; charset=UTF-8"
+								}
+							],
+							"cookie": [],
+							"body": null
+						},
+						{
+							"name": "Update car example 2",
+							"originalRequest": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"brand\": \"VAZ\",\n    \"model\": \"2102\",\n    \"color\": \"синий\",\n    \"state_number\": \"о345оо34\",\n    \"client_id\": 1,\n    \"status\": 0\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars/3",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"3"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:31:01 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "57"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"state_number\": [\n        \"This state car number already exists\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete car",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars/{id}",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars",
+								"{id}"
+							]
+						},
+						"description": "A successful requests will return HTTP 204 Status Code."
+					},
+					"response": [
+						{
+							"name": "Delete car example 1",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars/15",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars",
+										"15"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "plain",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:33:44 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								}
+							],
+							"cookie": [],
+							"body": null
+						}
+					]
+				},
+				{
+					"name": "List a specific client's cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/clients/{id}/cars",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"clients",
+								"{id}",
+								"cars"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List client cars example 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/6/cars",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"6",
+										"cars"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:49:34 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "446"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 7,\n        \"brand\": \"Hyundai\",\n        \"model\": \"Sonata\",\n        \"color\": \"серый\",\n        \"state_number\": \"е777уу777\",\n        \"client_id\": 6,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 15:36:26\"\n    },\n    {\n        \"id\": 6,\n        \"brand\": \"LADA\",\n        \"model\": \"X-Ray\",\n        \"color\": \"красный\",\n        \"state_number\": \"о543о34\",\n        \"client_id\": 6,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 13:52:55\"\n    }\n]"
+						},
+						{
+							"name": "List client cars example 2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/clients/100/cars",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"clients",
+										"100",
+										"cars"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 15:50:55 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "58"
+								},
+								{
+									"key": "Content-Length",
+									"value": "34"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"client_id\": [\n        \"Client not found\"\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List parked cars",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://laravelapp.ru/api/v1/cars_parked",
+							"protocol": "http",
+							"host": [
+								"laravelapp",
+								"ru"
+							],
+							"path": [
+								"api",
+								"v1",
+								"cars_parked"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"description": "optional, default = 1",
+									"disabled": true
+								},
+								{
+									"key": "pageSize",
+									"value": "3",
+									"description": "optional, default = 10",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List parked cars example 1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://laravelapp.ru/api/v1/cars_parked",
+									"protocol": "http",
+									"host": [
+										"laravelapp",
+										"ru"
+									],
+									"path": [
+										"api",
+										"v1",
+										"cars_parked"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"description": "optional, default = 1",
+											"disabled": true
+										},
+										{
+											"key": "pageSize",
+											"value": "3",
+											"description": "optional, default = 10",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sun, 05 Jul 2020 16:03:42 GMT"
+								},
+								{
+									"key": "Server",
+									"value": "Apache/2.4.29 (Ubuntu)"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "60"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "59"
+								},
+								{
+									"key": "Content-Length",
+									"value": "669"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5, max=100"
+								},
+								{
+									"key": "Connection",
+									"value": "Keep-Alive"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"id\": 7,\n        \"brand\": \"Hyundai\",\n        \"model\": \"Sonata\",\n        \"color\": \"серый\",\n        \"state_number\": \"е777уу777\",\n        \"client_id\": 6,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 15:36:26\"\n    },\n    {\n        \"id\": 5,\n        \"brand\": \"LADA\",\n        \"model\": \"Vesta\",\n        \"color\": \"черный\",\n        \"state_number\": \"о345оо34\",\n        \"client_id\": 5,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 13:52:55\"\n    },\n    {\n        \"id\": 6,\n        \"brand\": \"LADA\",\n        \"model\": \"X-Ray\",\n        \"color\": \"красный\",\n        \"state_number\": \"о543о34\",\n        \"client_id\": 6,\n        \"status\": 1,\n        \"created_at\": \"2020-07-05 13:52:55\",\n        \"updated_at\": \"2020-07-05 13:52:55\"\n    }\n]"
+						}
+					]
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "d668c770-21ae-4917-841d-1e6287c646cf",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "1d2eca2b-6de6-452f-94e8-eaaf504e29c3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
